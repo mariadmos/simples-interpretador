@@ -2,15 +2,12 @@ package br.ufma.compiladores;
 
 public class Main {
     public static void main(String[] args) {
-        try {
-            
-            System.out.println("Testando a sentença: let a = 42 + 5;");
-            String input = "let a = 42 + 5;";
-            Parser p = new Parser(input.getBytes());
-            p.parse();
-            
-        } catch (Error e) {
-            System.out.println("Erro: " + e.getMessage());
-        }
+        String input = "let a = 42 + 5 - 8;\n" +
+                      "let b = 56 + 8;\n" +
+                      "print a + b + 6;";
+        
+        Parser p = new Parser(input.getBytes());
+        p.parse();
+        System.out.println(p.getOutput());
     }
 } 
