@@ -1,10 +1,10 @@
 package br.ufma.compiladores;
 
-public class Parser {
+public class Parser_ {
     private Scanner scan;
     private char currentToken;
 
-    public Parser(byte[] input) {
+    public Parser_(byte[] input) {
         scan = new Scanner(input);
         currentToken = scan.nextToken();
     }
