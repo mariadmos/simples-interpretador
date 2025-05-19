@@ -1,23 +1,21 @@
 package br.ufma.compiladores;
 
 public class Parser {
-    private byte[] input;
-    private int current;
+    private Scanner scan;
+    private char currentToken;
 
     public Parser(byte[] input) {
-        this.input = input;
-        this.current = 0;
+        scan = new Scanner(input);
+        currentToken = scan.nextToken();
     }
 
-    private char peek() {
-        if (current < input.length)
-            return (char)input[current];
-        return '\0';
+    private void nextToken() {
+        currentToken = scan.nextToken();
     }
 
-    private void match(char c) {
-        if (c == peek()) {
-            current++;
+    private void match(char t) {
+        if (currentToken == t) {
+            nextToken();
         } else {
             throw new Error("syntax error");
         }
@@ -29,21 +27,21 @@ public class Parser {
     }
 
     void digit() {
-        if (Character.isDigit(peek())) {
-            System.out.println("push " + peek());
-            match(peek());
+        if (Character.isDigit(currentToken)) {
+            System.out.println("push " + currentToken);
+            match(currentToken);
         } else {
             throw new Error("syntax error");
         }
     }
 
     void oper() {
-        if (peek() == '+') {
+        if (currentToken == '+') {
             match('+');
             digit();
             System.out.println("add");
             oper();
-        } else if (peek() == '-') {
+        } else if (currentToken == '-') {
             match('-');
             digit();
             System.out.println("sub");
