@@ -1,7 +1,14 @@
 package br.ufma.compiladores;
 
 public enum TokenType {
-    PLUS, MINUS,
+    PLUS, MINUS, EQ, SEMICOLON,
+
+    // Literals
     NUMBER,
+    IDENT,
+
+    // Keywords
+    LET,
+
     EOF
 } 
