@@ -96,6 +96,6 @@ public class Parser {
     }
 
     public String getOutput() {
-        return output.toString();
+        return output.toString().trim();
     }
 } 

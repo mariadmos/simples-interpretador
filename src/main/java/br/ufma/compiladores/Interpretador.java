@@ -48,18 +48,15 @@ public class Interpretador {
     Map<String,Integer> variables = new HashMap<>();
 
     Interpretador (String input) {
-        final String eol = System.getProperty("line.separator");
-        var output = input.split(eol);
-        commands = Arrays.stream(output)
-                .map(String::strip)
-                .filter(  (s) ->  s.indexOf("//") != 0 && s != "")
-                .map ( (s) ->s.split(" ")  )
+        commands = Arrays.stream(input.split("\n"))
+                .map(String::trim)
+                .filter(s -> !s.isEmpty())
+                .map(s -> s.split("\\s+"))
                 .collect(Collectors.toList());
-
     }
 
     public boolean hasMoreCommands () {
-        return commands.size() != 0;
+        return !commands.isEmpty();
     }
 
     public Command nextCommand () {
